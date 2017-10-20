@@ -14,4 +14,4 @@ install:
 script: 
   - make -sj9 
   - ./cppconcurrencyinaction
-  - cppcheck --quiet --error-exitcode=1
+  - cppcheck --quiet --error-exitcode=1 .
