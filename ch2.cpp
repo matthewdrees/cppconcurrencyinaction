@@ -3,47 +3,11 @@
 #include <thread>
 #include <iostream>
 
-namespace {
-
-    class ThreadTask {
-    public:
-        ThreadTask(int i) : _i(i) {}
-
-        void operator()() {
-            _i += 20;
-        }
-
-        int getI() const { return _i; }
-
-    private:
-        int _i;
-    };
-        
-    int thread_function(int a, int b) {
-        return a+b;
-    }
-
-    class ThreadGuard
-    {
-    public:
-        explicit ThreadGuard(std::thread& t_): t(t_) {}
-
-        ~ThreadGuard() {
-            if (t.joinable()) {
-                t.join();
-            }
-        }
-        ThreadGuard(const ThreadGuard&) = delete;
-        ThreadGuard& operator=(const ThreadGuard&) = delete;
-
-    private:
-        std::thread& t;
-    };
-}
 
 namespace cppconcurrency {
+namespace ch2 {
 
-    bool ch2_thread_stuff() {
+    bool run_sample_code() {
 
         bool ret = true;
         {
@@ -76,6 +40,13 @@ namespace cppconcurrency {
             ThreadGuard threadGuard(my_thread);
         }
 
+        {
+            std::vector<int> v = {1,2,3,4,5,6,7,8,9,10,11,12};
+            int init = 0;
+            
+            ret = ret && (parallel_accumulate(v.begin(), v.end(), init) == 78);
+        }
         return ret;
     }
+}
 }
