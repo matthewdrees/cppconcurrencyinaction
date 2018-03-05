@@ -11,7 +11,7 @@ DEPS := $(OBJS:.o=.d)
 all: $(PRGM)
 
 $(PRGM): $(OBJS)
-	$(CXX) $(OBJS) $(LDLIBS) -o $@
+	$(CXX) $(OBJS) $(LDLIBS) -o $@ -lpthread
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -MMD -MP -c $< -o $@

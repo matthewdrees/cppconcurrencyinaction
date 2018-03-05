@@ -1,17 +1,7 @@
-lannguage: cpp
-compiler: gcc
-dist: trusty
+sudo: required
 
-before_install:
-  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-  - sudo apt-get update -qq
-
-install: 
-  - sudo apt-get install -qq g++-6
-  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
-  - sudo apt-get install -qq cppcheck
+services:
+  - docker
 
 script: 
-  - make -sj9 
-  - ./cppconcurrencyinaction
-  - cppcheck --quiet --error-exitcode=1 .
+  - docker build -t cppconcurrencyinaction .

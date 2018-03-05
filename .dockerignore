@@ -1,0 +1,5 @@
+*.o
+*.d
+.git*
+.travis.yml
+cppconcurrencyinaction
